@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraMap3D - 2D Viewer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <div id="header">
+            <h1>TerraMap3D Viewer</h1>
+            <div id="coordinates"></div>
+        </div>
+
+        <!-- Control Panel -->
+        <div id="control-panel">
+            <div class="control-section">
+                <h3>Base Layer</h3>
+                <select id="base-layer-select">
+                    <option value="none" selected>None</option>
+                    <option value="google-roadmap">Google Maps</option>
+                    <option value="google-satellite">Google Satellite</option>
+                    <option value="osm">OpenStreetMap</option>
+                </select>
+            </div>
+
+            <div class="control-section">
+                <h3>Ortho Layer</h3>
+                <label>
+                    <input type="checkbox" id="ortho-toggle" checked> Show Ortho
+                </label>
+                <label>
+                    Opacity: <span id="ortho-opacity-value">100%</span>
+                </label>
+                <input type="range" id="ortho-opacity" min="0" max="100" value="100">
+            </div>
+
+            <div class="control-section">
+                <h3>DSM Layer</h3>
+                <label>
+                    <input type="checkbox" id="dsm-toggle" checked> Show DSM
+                </label>
+                <label>
+                    Opacity: <span id="dsm-opacity-value">80%</span>
+                </label>
+                <input type="range" id="dsm-opacity" min="0" max="100" value="80">
+                <label>
+                    Colormap:
+                    <select id="dsm-colormap">
+                        <option value="terrain">Terrain</option>
+                        <option value="viridis">Viridis</option>
+                        <option value="plasma">Plasma</option>
+                        <option value="inferno">Inferno</option>
+                        <option value="rainbow">Rainbow</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="control-section">
+                <h3>View Mode</h3>
+                <select id="view-mode">
+                    <option value="single">Single View</option>
+                    <option value="split-horizontal">Split Horizontal</option>
+                    <option value="split-vertical">Split Vertical</option>
+                </select>
+            </div>
+
+            <div class="control-section">
+                <button id="zoom-extent" class="btn-primary">Zoom to Extent</button>
+                <button id="reset-view" class="btn-secondary">Reset View</button>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map-container">
+            <div id="map-single" class="map-view"></div>
+            <div id="map-split" class="split-container" style="display: none;">
+                <div class="split-pane">
+                    <div id="map-left" class="map-view">
+                        <div class="map-label">Ortho</div>
+                    </div>
+                </div>
+                <div class="split-divider"></div>
+                <div class="split-pane">
+                    <div id="map-right" class="map-view">
+                        <div class="map-label">DSM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
